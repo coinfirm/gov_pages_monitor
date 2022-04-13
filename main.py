@@ -57,6 +57,7 @@ def instant_markets():
 
 
 def wait_for_content():
+    
     wait_time = random.randint(2, 6)
     time.sleep(wait_time)
 
