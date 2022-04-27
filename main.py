@@ -20,6 +20,11 @@ keywords = ['crypto', 'cryptocurrency', 'crypto currency',
             'virtual asset', 'blockchain', 'TRM', 'distributed ledger',
             'ripple', 'stellar', 'avalanche', 'usdt', 'usdc', 'stable coin']
 
+keywords2 = ['crypto', 'cryptocurrency', '"crypto currency"',
+             '"virtual currency"', 'bitcoin', 'ethereum',
+             '"virtual asset"', 'blockchain', 'TRM', '"distributed ledger"',
+             'ripple', 'stellar', 'avalanche', 'usdt', 'usdc', 'stable coin']
+
 
 def words_variation(word):
 
@@ -39,7 +44,7 @@ def words_variation(word):
     elif word == 'stable coin':
         return stable_coin, stable_coin[0]
     else:
-        return False, False
+        return [], ""
 
 
 def xpath(elem):
@@ -77,22 +82,22 @@ def instant_markets():
                     href = "https://www.instantmarkets.com" + str(el['href'])
                     title = el['title']
                     list_of_links.append([href, title])
-                    for link in list_of_links:
-                        driver.get(link[0])
-                        wait_for_content()
-                        content = driver.page_source
-                        counter = 0
-                        for w in word_list:
-                            if content.__contains__(w) and counter == 0:
-                                counter += 1
-                                payload = {
-                                    "text": "New article found on https://www.instantmarkets.com/ with key word: " + elem + " ```" + "Title: " +
-                                            link[1] + " \n" + "Link: "
-                                            + link[0] + " ```"}
-                                response = requests.post("https://hooks.slack.com/services/T14NAEEBZ/B038S999Y3W"
-                                                         "/aee3kf3xwgnMr0Nq5jKxwXFW", json.dumps(payload))
-                            else:
-                                continue
+                for link in list_of_links:
+                    driver.get(link[0])
+                    wait_for_content()
+                    content = driver.page_source
+                    counter = 0
+                    for w in word_list:
+                        if content.find(w) > -1 and counter == 0:
+                            counter += 1
+                            payload = {
+                                "text": "New article found on https://www.instantmarkets.com/ with key word: " + elem + " ```" + "Title: " +
+                                        link[1] + " \n" + "Link: "
+                                        + link[0] + " ```"}
+                            response = requests.post("https://hooks.slack.com/services/T14NAEEBZ/B038S999Y3W"
+                                                     "/aee3kf3xwgnMr0Nq5jKxwXFW", json.dumps(payload))
+                        else:
+                            continue
             else:
                 for el in links:
                     href = "https://www.instantmarkets.com" + str(el['href'])
@@ -163,7 +168,7 @@ def ec_europa():
                             content = driver.page_source
                             counter = 0
                             for w in word_list:
-                                if content.__contains__(w) and counter == 0:
+                                if content.find(w) > -1 and counter == 0:
                                     counter += 1
                                     payload = {
                                         "text": "New article found on https://ec.europa.eu/ with key word: " + elem + " ```" + "Title: " +
@@ -205,11 +210,6 @@ def last_7_days():
 
 
 def sam_gov():
-
-    keywords2 = ['crypto', 'cryptocurrency', '"crypto currency"',
-                 '"virtual currency"', 'bitcoin', 'ethereum',
-                 '"virtual asset"', 'blockchain', 'TRM', '"distributed ledger"',
-                 'ripple', 'stellar', 'avalanche', 'usdt', 'usdc', 'stable coin']
 
     for elem in keywords2:
         url = f'https://sam.gov/search/?page=1&pageSize=25&sort=-modifiedDate&sfm%5Bstatus%5D%5Bis_active%5D=true&sfm' \
@@ -263,12 +263,7 @@ def sam_gov():
 
 def ted_europa():
 
-    keywords3 = ['crypto', 'cryptocurrency', '"crypto currency"',
-                 '"virtual currency"', 'bitcoin', 'ethereum',
-                 '"virtual asset"', 'blockchain', 'TRM', '"distributed ledger"',
-                 'ripple', 'stellar', 'avalanche', 'usdt', 'usdc', '"stable coin"']
-
-    for elem in keywords3:
+    for elem in keywords2:
         url = 'https://ted.europa.eu/TED/search/search.do'
         driver.get(url)
         try:
