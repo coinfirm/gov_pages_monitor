@@ -1,5 +1,5 @@
 # gov_pages_monitor
-# Search weekly for:
+Search weekly for:
 Crypto
 Cryptocurrency
 Crypto currency
