@@ -1,5 +1,5 @@
 # gov_pages_monitor
-Search weekly for:
+# Search weekly for:
 Crypto
 Cryptocurrency
 Crypto currency
@@ -9,6 +9,13 @@ Ethereum
 Virtual asset
 Blockchain
 TRM
+Distributed Ledger
+Ripple
+Stellar
+Avalanche
+Stable Coin
+# From:
 https://sam.gov/
 https://digital-strategy.ec.europa.eu/
 https://www.instantmarkets.com/
+https://ted.europa.eu
