@@ -555,13 +555,13 @@ def coe():
 
 
 if __name__ == '__main__':
-    #instant_markets()
-    # sam_gov()
-    # ted_europa()
+    instant_markets()
+    sam_gov()
+    ted_europa()
     coe()
-    # ec_europa()
-    # if not ec_europa():
-    #     ec_europa()
+    ec_europa()
+    if not ec_europa():
+        ec_europa()
 
     if added == False:
         payload = {
