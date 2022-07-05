@@ -19,6 +19,7 @@ Search weekly for:
 - https://digital-strategy.ec.europa.eu/
 - https://www.instantmarkets.com/
 - https://ted.europa.eu
+- https://www.coe.int
 # Usage:
 Scraps above pages using keywords in search section of the websites, if an article is found within 7 days with the keyword, title and link of this article is sent to slack chanel.
 # Run:
